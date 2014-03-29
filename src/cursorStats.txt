@@ -1,0 +1,7 @@
+cursorCross hot spo = 15, 14
+
+cursorDown hot spot = 6, 24
+
+cursorLeft hot spot = 0,6
+
+cursorRight hot spot = 24, 4
