@@ -6,7 +6,10 @@
 #include <QMessageBox>
 #include <QString>
 #include <QLineEdit>
+#include <QCursor>
+#include <QList>
 #include "testenv.h"
+#include "startDialog.h"
  
 class MainWindow : public QMainWindow {
  
@@ -14,11 +17,22 @@ class MainWindow : public QMainWindow {
    
 public:
  
-  MainWindow(QWidget *parent=0);
+   MainWindow(QWidget *parent=0);
 
-private:
+   //setUp();
+
+//   public slots:
+
+   
+   
+
+  private:
+  
    TestEnv *testArea;
-   QString participantName;
+   QString *participantName;
+   QList <QCursor> *cursorList;
+   StartDialog *startInfo;
+   
 };
  
 #endif
