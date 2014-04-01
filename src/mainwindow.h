@@ -21,9 +21,12 @@ public:
 
    //setUp();
 
-//   public slots:
+   public slots:
 
-   
+   void getName(QString name);
+   void getAge(QString age);
+   void getGender(QString gender);
+   void getDominantHand(QString dominantHand);
    
 
   private:
@@ -32,6 +35,11 @@ public:
    QString *participantName;
    QList <QCursor> *cursorList;
    StartDialog *startInfo;
+
+   QString testerName;
+   QString testerAge;
+   QString testerGender;
+   QString testerDominantHand;
    
 };
  

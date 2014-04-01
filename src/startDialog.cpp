@@ -1,8 +1,10 @@
 
 #include "startDialog.h"
 
+#include <QButtonGroup>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QMessageBox>
 
 const int MIN_AGE = 17;
 const int MAX_AGE = 90;
@@ -66,6 +68,33 @@ StartDialog::StartDialog(QWidget *parent) : QDialog(parent)
    layout->addLayout(buttonsLayout);
 
    setLayout(layout);
+  
+}
 
+void StartDialog::accepted()
+{
+   testerName = nameLineEdit->text();
+   testerAge = ageSpinBox->value();
+   
+   if(maleGenderRadioButton->isChecked())
+      testerGender = maleGenderRadioButton->text();
+   else if(femaleGenderRadioButton->isChecked())
+      testerGender = femaleGenderRadioButton->text();
+   else
+      testerGender = "";
+
+   if(leftDominantHandRadioButton->isChecked())
+      testerDominantHand = leftDominantHandRadioButton->text();
+   else if(rightDominantHandRadioButton->isChecked())
+      testerDominantHand = rightDominantHandRadioButton->text();
+   else
+      testerDominantHand = "";
+
+   emit name(testerName);
+   emit age(testerAge);
+   emit gender(testerGender);
+   emit dominantHand(testerDominantHand);
    
 }
+
+

@@ -7,7 +7,6 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QRadioButton>
-#include <QButtonGroup>
 #include <QSpinBox>
 
 class StartDialog : public QDialog
@@ -18,14 +17,17 @@ class StartDialog : public QDialog
 
    StartDialog(QWidget *parent = 0);
 
-   //public signals:
+   signals:
 
-   //void name(QString name);
+   void name(QString name);
+   void age(QString age);
+   void gender(QString gender);
+   void dominantHand(QString dominantHand);
 
-   //protected event:
+   
+   public slots:
 
-   //clicked();
-	     
+   void accepted();  
 
   private:
 
@@ -48,6 +50,11 @@ class StartDialog : public QDialog
 
    QPushButton *okButton;
    QPushButton *cancelButton;
+
+   QString testerName;
+   QString testerAge;
+   QString testerGender;
+   QString testerDominantHand;
    
 };
 
