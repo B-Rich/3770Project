@@ -40,10 +40,10 @@ void MainWindow::getInfo()
 void MainWindow::startTests()
 {
    
-   /*(*cursorList) << QCursor(QPixmap((cursorDir+QString("cursorCross.bmp"))),15,14);
-   (*cursorList) << QCursor(QPixmap((cursorDir+QString("cursorDown.bmp"))),6,24);
-   (*cursorList) << QCursor(QPixmap((cursorDir+QString("cursorLeft.bmp"))),0,6);
-   (*cursorList) << QCursor(QPixmap((cursorDir+QString("cursorRight.bmp"))),24,4);
+   /*(*cursorList) << QCursor(QPixmap((cursorDir+QString("cursorCross.bmp"))),15,15);
+   (*cursorList) << QCursor(QPixmap((cursorDir+QString("cursorDown.bmp"))),15,31);
+   (*cursorList) << QCursor(QPixmap((cursorDir+QString("cursorLeft.bmp"))),0,15);
+   (*cursorList) << QCursor(QPixmap((cursorDir+QString("cursorRight.bmp"))),31,15);
    setCursor(cursorList->at(0));*/
    testArea->start();
 }
