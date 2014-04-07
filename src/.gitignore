@@ -2,3 +2,5 @@ src
 *~
 *.o
 moc*
+src.pro
+Makefile

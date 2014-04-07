@@ -68,7 +68,9 @@ StartDialog::StartDialog(QWidget *parent) : QDialog(parent)
    layout->addLayout(buttonsLayout);
 
    setLayout(layout);
-  
+
+   QObject::connect(okButton, SIGNAL(clicked()), this, SLOT(accept()));
+   QObject::connect(cancelButton, SIGNAL(clicked()), this, SLOT(reject()));
 }
 
 void StartDialog::accepted()

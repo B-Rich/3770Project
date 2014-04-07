@@ -2,22 +2,23 @@
  
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
-   startInfo = new StartDialog();
+   startInfo = new StartDialog(this);
    setCentralWidget(testArea = new TestEnv());
 
-   QObject::connect(startInfo, SIGNAL(name), this, SLOT(getName));
-   QObject::connect(startInfo, SIGNAL(age), this, SLOT(getAge));
-   QObject::connect(startInfo, SIGNAL(gender), this, SLOT(getGender));
-   QObject::connect(startInfo, SIGNAL(dominantHand), this, SLOT(getDominantHand));
+   QObject::connect(startInfo, SIGNAL(name(QString)), this, SLOT(getName(QString)));
+   QObject::connect(startInfo, SIGNAL(age(QString)), this, SLOT(getAge(QString)));
+   QObject::connect(startInfo, SIGNAL(gender(QString)), this, SLOT(getGender(QString)));
+   QObject::connect(startInfo, SIGNAL(dominantHand(QString)), this, SLOT(getDominantHand(QString)));
 
    
-   int button = startInfo->exec();
-   if(button == QMessageBox::Ok)
+   startInfo->exec();
+   while(startInfo->result() != QDialog::Accepted)
    {
-      
+      QMessageBox::information(this, "Form Fill-Out", QString("You must fill out all of the fields to continue"));
+      startInfo->exec();
    }
-   
-   
+
+   showMaximized();
 }
 
 /*MainWindow::setUp()
