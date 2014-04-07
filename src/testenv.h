@@ -39,6 +39,7 @@ private:
    int moveDistance;
    QRect *curTarget;
    static const double PI = 3.14159265359;
+   int errors;
 
    void stop();
    void newTarget();

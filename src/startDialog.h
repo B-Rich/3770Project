@@ -8,6 +8,8 @@
 #include <QPushButton>
 #include <QRadioButton>
 #include <QSpinBox>
+#include <QList>
+#include <QString>
 
 class StartDialog : public QDialog
 {
@@ -16,18 +18,7 @@ class StartDialog : public QDialog
       public:
 
    StartDialog(QWidget *parent = 0);
-
-   signals:
-
-   void name(QString name);
-   void age(QString age);
-   void gender(QString gender);
-   void dominantHand(QString dominantHand);
-
-   
-   public slots:
-
-   void accepted();  
+   QList<QString> getValues();
 
   private:
 
@@ -50,12 +41,6 @@ class StartDialog : public QDialog
 
    QPushButton *okButton;
    QPushButton *cancelButton;
-
-   QString testerName;
-   QString testerAge;
-   QString testerGender;
-   QString testerDominantHand;
-   
 };
 
 #endif

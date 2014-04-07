@@ -73,30 +73,26 @@ StartDialog::StartDialog(QWidget *parent) : QDialog(parent)
    QObject::connect(cancelButton, SIGNAL(clicked()), this, SLOT(reject()));
 }
 
-void StartDialog::accepted()
+QList<QString> StartDialog::getValues()
 {
-   testerName = nameLineEdit->text();
-   testerAge = ageSpinBox->value();
+   QList<QString> values;
+   if ((nameLineEdit->text() == QString("")) || (ageSpinBox->value() == 0))
+      return values;
+   values << nameLineEdit->text() << QString::number(ageSpinBox->value());
    
-   if(maleGenderRadioButton->isChecked())
-      testerGender = maleGenderRadioButton->text();
-   else if(femaleGenderRadioButton->isChecked())
-      testerGender = femaleGenderRadioButton->text();
+   if (maleGenderRadioButton->isChecked())
+      values << maleGenderRadioButton->text();
+   else if (femaleGenderRadioButton->isChecked())
+      values << femaleGenderRadioButton->text();
    else
-      testerGender = "";
+      return QList<QString>();
 
-   if(leftDominantHandRadioButton->isChecked())
-      testerDominantHand = leftDominantHandRadioButton->text();
-   else if(rightDominantHandRadioButton->isChecked())
-      testerDominantHand = rightDominantHandRadioButton->text();
+   if (leftDominantHandRadioButton->isChecked())
+      values << leftDominantHandRadioButton->text();
+   else if (rightDominantHandRadioButton->isChecked())
+      values << leftDominantHandRadioButton->text();
    else
-      testerDominantHand = "";
+      return QList<QString>();
 
-   emit name(testerName);
-   emit age(testerAge);
-   emit gender(testerGender);
-   emit dominantHand(testerDominantHand);
-   
+   return values;
 }
-
-

@@ -1,0 +1,1 @@
+This project is a testing environment for the accurate testing of mouse cursors. It seeks to satisfy Fitt's Law by randomly moving targets away from the mouse at a fixed distance. Cursors are manually implemented here and the directory structure denotes general structure.

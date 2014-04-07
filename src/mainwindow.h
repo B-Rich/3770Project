@@ -8,6 +8,7 @@
 #include <QLineEdit>
 #include <QCursor>
 #include <QList>
+#include <QDebug>
 #include "testenv.h"
 #include "startDialog.h"
  
@@ -18,19 +19,13 @@ class MainWindow : public QMainWindow {
 public:
  
    MainWindow(QWidget *parent=0);
-
-   //setUp();
-
-   public slots:
-
-   void getName(QString name);
-   void getAge(QString age);
-   void getGender(QString gender);
-   void getDominantHand(QString dominantHand);
    
+   protected:
+   void setUp();
+   void getInfo();
+   void startTests();
 
   private:
-  
    TestEnv *testArea;
    QString *participantName;
    QList <QCursor> *cursorList;

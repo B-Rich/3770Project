@@ -3,46 +3,38 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
    startInfo = new StartDialog(this);
-   setCentralWidget(testArea = new TestEnv());
+   setCentralWidget(testArea = new TestEnv(10,100,this));
 
-   QObject::connect(startInfo, SIGNAL(name(QString)), this, SLOT(getName(QString)));
-   QObject::connect(startInfo, SIGNAL(age(QString)), this, SLOT(getAge(QString)));
-   QObject::connect(startInfo, SIGNAL(gender(QString)), this, SLOT(getGender(QString)));
-   QObject::connect(startInfo, SIGNAL(dominantHand(QString)), this, SLOT(getDominantHand(QString)));
-
-   
-   startInfo->exec();
-   while(startInfo->result() != QDialog::Accepted)
-   {
-      QMessageBox::information(this, "Form Fill-Out", QString("You must fill out all of the fields to continue"));
-      startInfo->exec();
-   }
-
+   getInfo();
    showMaximized();
+
+   startTests();
 }
 
-/*MainWindow::setUp()
+void MainWindow::getInfo()
 {
-
+   QList<QString> values;
+   while (values.size() == 0)
+   {
+      if(startInfo->exec() != QDialog::Accepted)
+      {
+         QMessageBox::information(this, "Form Fill-Out", QString("Program requires user information to continue."));
+      }
+      values = startInfo->getValues();
+      if (values.size() == 0)
+      {
+         QMessageBox::information(this, "Form Fill-Out", QString("All fields must be filled out!"));
+      }
+   }
    
-}*/
-
-void MainWindow::getName(QString name)
-{
-   testerName = name;
+   testerName = values[0];
+   testerAge = values[1];
+   testerGender = values[2];
+   testerDominantHand = values[3];
 }
 
-void MainWindow::getAge(QString age)
+void MainWindow::startTests()
 {
-   testerAge = age;
-}
-
-void MainWindow::getGender(QString gender)
-{
-   testerGender = gender;
-}
-
-void MainWindow::getDominantHand(QString dominantHand)
-{
-   testerDominantHand = dominantHand;
+   qDebug() << testerName << testerAge << testerGender << testerDominantHand;
+   testArea->start();
 }

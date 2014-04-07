@@ -13,6 +13,7 @@ void TestEnv::start()
 {
    started = true;
    totalTime=0;
+   errors=0;
    remainingTargets = totalTargets;
    newTarget();
    
@@ -29,6 +30,8 @@ void TestEnv::paintEvent(QPaintEvent *event)
 {
    QPainter painter(this);
    painter.setRenderHint(QPainter::Antialiasing, true);
+   this->setAutoFillBackground(true);
+   this->setPalette(QPalette(Qt::blue));
    painter.setBrush(palette().foreground().color());
    if (started)
       painter.drawRect(*curTarget);
@@ -55,6 +58,10 @@ void TestEnv::mousePressEvent(QMouseEvent *event)
             newTarget();
             update();
          }
+      }
+      else
+      {
+         errors++;
       }
    }
 }
