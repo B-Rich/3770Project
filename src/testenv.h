@@ -10,6 +10,7 @@
 #include <QCursor>
 #include <QtGlobal>
 #include <QtCore/qmath.h>
+#include <QDebug>
 
 class TestEnv : public QWidget {
  
@@ -17,14 +18,19 @@ class TestEnv : public QWidget {
    
 public:
  
-  TestEnv(int num=100, int dist=100, QWidget *parent=0);
+  TestEnv(int num=10, int dist=100, int s=20, QWidget *parent=0);
    
 public slots:
    void start();
    int retTime();
+   int getErrors() {return errors;}
+   void changeSize(int s) {size=s;}
+   void changeDistance(int d) {moveDistance=d;}
+   void changeNumTargets(int n) {totalTargets=n;}
 
 signals:
    void emitHit(const int &rem);
+   void emitError(const int &er);
 
 protected:
    void paintEvent(QPaintEvent *event);
@@ -37,6 +43,7 @@ private:
    int totalTargets;
    int remainingTargets;
    int moveDistance;
+   int size;
    QRect *curTarget;
    static const double PI = 3.14159265359;
    int errors;

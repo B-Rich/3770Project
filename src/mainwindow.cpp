@@ -2,12 +2,13 @@
  
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
-   startInfo = new StartDialog(this);
-   setCentralWidget(testArea = new TestEnv(10,100,this));
-
-   getInfo();
    showMaximized();
-
+   startInfo = new StartDialog(this);
+   setCentralWidget(testArea = new TestEnv(10,200,50,this));
+   QObject::connect(testArea, SIGNAL(emitHit(const int&)), this, SLOT(setRem(const int&)));
+   QObject::connect(testArea, SIGNAL(emitError(const int&)), this, SLOT(setErr(const int&)));
+   createDock();
+   getInfo();
    startTests();
 }
 
@@ -34,7 +35,31 @@ void MainWindow::getInfo()
 }
 
 void MainWindow::startTests()
-{
-   qDebug() << testerName << testerAge << testerGender << testerDominantHand;
+{ 
    testArea->start();
+}
+
+void MainWindow::createDock()
+{
+   QDockWidget* dock = new QDockWidget("", this);
+   dock->setAllowedAreas(Qt::TopDockWidgetArea);
+   dock->setFeatures(QDockWidget::NoDockWidgetFeatures);
+
+   QLabel *tarRemTitle = new QLabel("Targets Remaining:");
+   tarRem = new QLabel("");
+   QLabel *errorNumTitle = new QLabel("Errors:");
+   errorNum = new QLabel("");
+
+   QWidget *parentWidget = new QWidget();
+   QHBoxLayout *layout = new QHBoxLayout();
+
+   layout->addWidget(tarRemTitle);
+   layout->addWidget(tarRem);
+   layout->addWidget(errorNumTitle);
+   layout->addWidget(errorNum);
+   //layout->addSpace();
+
+   parentWidget->setLayout(layout);
+   dock->setWidget(parentWidget);
+   addDockWidget(Qt::TopDockWidgetArea, dock);
 }

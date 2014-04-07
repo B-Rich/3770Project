@@ -9,6 +9,10 @@
 #include <QCursor>
 #include <QList>
 #include <QDebug>
+#include <QDockWidget>
+#include <QLabel>
+#include <QHBoxLayout>
+
 #include "testenv.h"
 #include "startDialog.h"
  
@@ -19,13 +23,18 @@ class MainWindow : public QMainWindow {
 public:
  
    MainWindow(QWidget *parent=0);
+
+public slots:
+   void setRem(const int &x) {tarRem->setText(QString::number(x));}
+   void setErr(const int &x) {errorNum->setText(QString::number(x));}
    
-   protected:
+protected:
    void setUp();
    void getInfo();
    void startTests();
+   void createDock();
 
-  private:
+private:
    TestEnv *testArea;
    QString *participantName;
    QList <QCursor> *cursorList;
@@ -35,7 +44,9 @@ public:
    QString testerAge;
    QString testerGender;
    QString testerDominantHand;
-   
+
+   QLabel *tarRem;
+   QLabel *errorNum;
 };
  
 #endif

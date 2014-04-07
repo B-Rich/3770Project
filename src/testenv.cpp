@@ -1,22 +1,24 @@
 #include "testenv.h"
 
-TestEnv::TestEnv(int num, int dist, QWidget *parent) : QWidget(parent), totalTargets(num), moveDistance(dist)
+TestEnv::TestEnv(int num, int dist, int s, QWidget *parent) : QWidget(parent), totalTargets(num), moveDistance(dist), size(s)
 {
    started = false;
    timer = new QTime();
-   curTarget = new QRect(0,0,20,20);
+   curTarget = new QRect(0,0,size,size);
    qsrand((uint)QTime::currentTime().msec());
    setMinimumSize(500, 500);
+   this->setAutoFillBackground(true);
+   this->setPalette(QPalette(Qt::white));
 }
 
 void TestEnv::start()
 {
-   started = true;
    totalTime=0;
    errors=0;
    remainingTargets = totalTargets;
    newTarget();
-   
+   started = true;
+   emit emitHit(totalTargets);
    timer->start();
    update();
 }
@@ -30,8 +32,6 @@ void TestEnv::paintEvent(QPaintEvent *event)
 {
    QPainter painter(this);
    painter.setRenderHint(QPainter::Antialiasing, true);
-   this->setAutoFillBackground(true);
-   this->setPalette(QPalette(Qt::blue));
    painter.setBrush(palette().foreground().color());
    if (started)
       painter.drawRect(*curTarget);
@@ -61,7 +61,7 @@ void TestEnv::mousePressEvent(QMouseEvent *event)
       }
       else
       {
-         errors++;
+         emit TestEnv::emitError(++errors);
       }
    }
 }
@@ -77,8 +77,10 @@ void TestEnv::stop()
 void TestEnv::newTarget()
 {
    QPoint curPos = TestEnv::mapFromGlobal(QCursor::pos());
+
    bool notDone = true;
-   while (notDone)
+   int i=0; //To catch infinite loops
+   while (notDone && (i<50))
    {
       int degreesToMove = qrand() % 360;
       double tempDegree = degreesToMove%90;
@@ -109,5 +111,6 @@ void TestEnv::newTarget()
       {
          notDone = false;
       }
+      i++;
    }
 }
