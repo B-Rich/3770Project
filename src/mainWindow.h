@@ -47,6 +47,9 @@ private:
 
    QLabel *tarRem;
    QLabel *errorNum;
+   
+   static const QString cursorDir;
+   static const QString resultsDir;
 };
  
 #endif

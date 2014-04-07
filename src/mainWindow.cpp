@@ -1,5 +1,8 @@
 #include "mainWindow.h"
  
+const QString MainWindow::cursorDir = "../cursors/";
+const QString MainWindow::resultsDir = "../results/";
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
    showMaximized();
@@ -36,6 +39,12 @@ void MainWindow::getInfo()
 
 void MainWindow::startTests()
 {
+   
+   /*(*cursorList) << QCursor(QPixmap((cursorDir+QString("cursorCross.bmp"))),15,14);
+   (*cursorList) << QCursor(QPixmap((cursorDir+QString("cursorDown.bmp"))),6,24);
+   (*cursorList) << QCursor(QPixmap((cursorDir+QString("cursorLeft.bmp"))),0,6);
+   (*cursorList) << QCursor(QPixmap((cursorDir+QString("cursorRight.bmp"))),24,4);
+   setCursor(cursorList->at(0));*/
    testArea->start();
 }
 
