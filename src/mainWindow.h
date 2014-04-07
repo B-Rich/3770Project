@@ -7,6 +7,8 @@
 #include <QString>
 #include <QLineEdit>
 #include <QCursor>
+#include <QPixmap>
+#include <QBitmap>
 #include <QList>
 #include <QDebug>
 #include <QDockWidget>

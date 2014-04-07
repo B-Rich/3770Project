@@ -5,9 +5,9 @@ const QString MainWindow::resultsDir = "../results/";
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
-   showMaximized();
+   showFullScreen();
    startInfo = new StartDialog(this);
-   setCentralWidget(testArea = new TestEnv(10,200,50,this));
+   setCentralWidget(testArea = new TestEnv(100,200,50,this));
    QObject::connect(testArea, SIGNAL(emitHit(const int&)), this, SLOT(setRem(const int&)));
    QObject::connect(testArea, SIGNAL(emitError(const int&)), this, SLOT(setErr(const int&)));
    createDock();
@@ -39,13 +39,34 @@ void MainWindow::getInfo()
 
 void MainWindow::startTests()
 {
+   QPixmap cursorCrossPic;
+   cursorCrossPic.load((cursorDir+QString("cursorCross.bmp")), "BMP", Qt::MonoOnly);
+   cursorCrossPic.setMask(QBitmap(cursorCrossPic));
+   QCursor cursorCross(cursorCrossPic, 15,15);
+
+   QPixmap cursorDownPic;
+   cursorDownPic.load((cursorDir+QString("cursorDown.bmp")), "BMP", Qt::MonoOnly);
+   cursorDownPic.setMask(QBitmap(cursorDownPic));
+   QCursor cursorDown(cursorDownPic, 15,31);
+
+   QPixmap cursorLeftPic;
+   cursorLeftPic.load((cursorDir+QString("cursorLeft.bmp")), "BMP", Qt::MonoOnly);
+   cursorLeftPic.setMask(QBitmap(cursorLeftPic));
+   QCursor cursorLeft(cursorLeftPic, 0,15);
+
+   QPixmap cursorRightPic;
+   cursorRightPic.load((cursorDir+QString("cursorRight.bmp")), "BMP", Qt::MonoOnly);
+   cursorRightPic.setMask(QBitmap(cursorRightPic));
+   QCursor cursorRight(cursorRightPic, 31,15);
    
-   /*(*cursorList) << QCursor(QPixmap((cursorDir+QString("cursorCross.bmp"))),15,15);
-   (*cursorList) << QCursor(QPixmap((cursorDir+QString("cursorDown.bmp"))),15,31);
-   (*cursorList) << QCursor(QPixmap((cursorDir+QString("cursorLeft.bmp"))),0,15);
-   (*cursorList) << QCursor(QPixmap((cursorDir+QString("cursorRight.bmp"))),31,15);
-   setCursor(cursorList->at(0));*/
+   setCursor(cursorCross);
+   try
+   {
    testArea->start();
+   } catch (QString temp)
+   {
+      qDebug() << temp;
+   }
 }
 
 void MainWindow::createDock()

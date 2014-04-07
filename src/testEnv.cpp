@@ -77,10 +77,11 @@ void TestEnv::stop()
 void TestEnv::newTarget()
 {
    QPoint curPos = TestEnv::mapFromGlobal(QCursor::pos());
+   QRect curGeom = geometry();
 
    bool notDone = true;
    int i=0; //To catch infinite loops
-   while (notDone && (i<50))
+   while (notDone && (i<100))
    {
       int degreesToMove = qrand() % 360;
       double tempDegree = degreesToMove%90;
@@ -107,10 +108,17 @@ void TestEnv::newTarget()
          newPos = QPoint((curPos.x() + moveX), (curPos.y() + moveY));
       }
       curTarget->moveTo(newPos);
-      if (QWidget::frameGeometry().contains(*curTarget, true))
+      if (curGeom.contains(*curTarget, true))
       {
-         notDone = false;
+         if (curTarget->bottomRight().y() < curGeom.height())
+         {
+            notDone = false;
+         }
       }
       i++;
+      if (i==100) //Break the infinite loop
+      {
+         throw QString("Could not create a new target within field");
+      }
    }
 }
