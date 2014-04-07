@@ -1,10 +1,4 @@
-
 #include "startDialog.h"
-
-#include <QButtonGroup>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QMessageBox>
 
 const int MIN_AGE = 17;
 const int MAX_AGE = 90;

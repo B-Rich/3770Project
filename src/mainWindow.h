@@ -13,7 +13,7 @@
 #include <QLabel>
 #include <QHBoxLayout>
 
-#include "testenv.h"
+#include "testEnv.h"
 #include "startDialog.h"
  
 class MainWindow : public QMainWindow {

@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "mainWindow.h"
  
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
@@ -35,7 +35,7 @@ void MainWindow::getInfo()
 }
 
 void MainWindow::startTests()
-{ 
+{
    testArea->start();
 }
 
@@ -46,9 +46,9 @@ void MainWindow::createDock()
    dock->setFeatures(QDockWidget::NoDockWidgetFeatures);
 
    QLabel *tarRemTitle = new QLabel("Targets Remaining:");
-   tarRem = new QLabel("");
+   tarRem = new QLabel(QString::number(0));
    QLabel *errorNumTitle = new QLabel("Errors:");
-   errorNum = new QLabel("");
+   errorNum = new QLabel(QString::number(0));
 
    QWidget *parentWidget = new QWidget();
    QHBoxLayout *layout = new QHBoxLayout();

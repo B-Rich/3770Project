@@ -1,4 +1,4 @@
-#include "testenv.h"
+#include "testEnv.h"
 
 TestEnv::TestEnv(int num, int dist, int s, QWidget *parent) : QWidget(parent), totalTargets(num), moveDistance(dist), size(s)
 {

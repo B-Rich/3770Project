@@ -10,6 +10,10 @@
 #include <QSpinBox>
 #include <QList>
 #include <QString>
+#include <QButtonGroup>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QMessageBox>
 
 class StartDialog : public QDialog
 {
