@@ -100,7 +100,7 @@ void MainWindow::startTests()
    }
    else
    {
-      QMessageBox::information(this,"Information", QString("Now beginning round %1").arg(roundNum));
+      QMessageBox::information(this,"Information", QString("Now beginning round %1.\n Click OK to begin.").arg(roundNum));
       setCursor(cursorList.takeFirst());
       try //Catch infinite loop
       {
