@@ -2,16 +2,21 @@
  
 const QString MainWindow::cursorDir = "../cursors/";
 const QString MainWindow::resultsDir = "../results/";
+const int MainWindow::numTargets = 10;
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
    showFullScreen();
    startInfo = new StartDialog(this);
-   setCentralWidget(testArea = new TestEnv(100,200,50,this));
+   setCentralWidget(testArea = new TestEnv(numTargets,200,50,this));
    QObject::connect(testArea, SIGNAL(emitHit(const int&)), this, SLOT(setRem(const int&)));
    QObject::connect(testArea, SIGNAL(emitError(const int&)), this, SLOT(setErr(const int&)));
+   QObject::connect(testArea, SIGNAL(emitFinish()), this, SLOT(startTests()));
+   QObject::connect(testArea, SIGNAL(retResults(const int&, const int&)), this, SLOT(saveResults(const int&, const int&)));
    createDock();
    getInfo();
+   loadCursors();
+   displayInformation();
    startTests();
 }
 
@@ -37,35 +42,71 @@ void MainWindow::getInfo()
    testerDominantHand = values[3];
 }
 
-void MainWindow::startTests()
+void MainWindow::loadCursors()
 {
    QPixmap cursorCrossPic;
    cursorCrossPic.load((cursorDir+QString("cursorCross.bmp")), "BMP", Qt::MonoOnly);
    cursorCrossPic.setMask(QBitmap(cursorCrossPic));
    QCursor cursorCross(cursorCrossPic, 15,15);
+   cursorList << cursorCross;
 
    QPixmap cursorDownPic;
    cursorDownPic.load((cursorDir+QString("cursorDown.bmp")), "BMP", Qt::MonoOnly);
    cursorDownPic.setMask(QBitmap(cursorDownPic));
    QCursor cursorDown(cursorDownPic, 15,31);
+   cursorList << cursorDown;
 
    QPixmap cursorLeftPic;
    cursorLeftPic.load((cursorDir+QString("cursorLeft.bmp")), "BMP", Qt::MonoOnly);
    cursorLeftPic.setMask(QBitmap(cursorLeftPic));
    QCursor cursorLeft(cursorLeftPic, 0,15);
+   cursorList << cursorLeft;
 
    QPixmap cursorRightPic;
    cursorRightPic.load((cursorDir+QString("cursorRight.bmp")), "BMP", Qt::MonoOnly);
    cursorRightPic.setMask(QBitmap(cursorRightPic));
    QCursor cursorRight(cursorRightPic, 31,15);
+   cursorList << cursorRight;
    
-   setCursor(cursorCross);
-   try
+   roundNum = 1;
+}
+
+void MainWindow::displayInformation()
+{
+   QString info = 
+      "Welcome " + testerName + "!\n\n" +
+      "This program will measure the speed and accuracy \n" +
+      "with which you (the user) are able to click each target.\n\n" +
+      "You will be presented with " + QString::number(cursorList.size()) + " different cursor styles and\n" +
+      QString::number(numTargets) + " targets.\n\n" +
+      "Upon clicking 'OK', the test will begin!\n\n" + "Good Luck!";
+   
+   QMessageBox msgBox;
+   msgBox.setText(info);
+   msgBox.setWindowTitle("Instructions");
+   msgBox.exec();
+}
+
+void MainWindow::startTests()
+{
+   if (cursorList.size() == 0) // Finished Testing, go to results
    {
-   testArea->start();
-   } catch (QString temp)
+      thankUser();
+      saveResultsToFile();
+      close();
+   }
+   else
    {
-      qDebug() << temp;
+      QMessageBox::information(this,"Information", QString("Now beginning round %1").arg(roundNum));
+      setCursor(cursorList.takeFirst());
+      try //Catch infinite loop
+      {
+      testArea->start();
+      } catch (QString temp)
+      {
+         qDebug() << temp;
+      }
+      roundNum++;
    }
 }
 
@@ -92,4 +133,61 @@ void MainWindow::createDock()
    parentWidget->setLayout(layout);
    dock->setWidget(parentWidget);
    addDockWidget(Qt::TopDockWidgetArea, dock);
+}
+
+void MainWindow::thankUser()
+{
+   QString info = 
+      "Thank you " + testerName + " for participating in our tests!\n\n" +
+      "Your performance data and general attributes will be recorded solely \n" +
+      "for the purpose of constructing statistics from the sample groups.\n" + 
+      "Your name will not be associated with any published data.";
+   QMessageBox::information(this,"Thank You!", info);
+}
+
+void MainWindow::saveResults(const int &t, const int &e)
+{
+   results.append(ResultHold(t,e));
+}
+
+void MainWindow::saveResultsToFile()
+{
+   QString filename = resultsDir+testerName+tr(".txt");
+   QFile file(filename);
+
+   bool duplicate=true;
+   int j=1;
+   while (duplicate)
+   {
+      if (file.exists())
+         file.setFileName(resultsDir+testerName+QString::number(1)+tr(".txt"));
+      else
+         duplicate = false;
+      j++;
+   }
+   
+   if (!file.open(QIODevice::WriteOnly))
+   {
+      QMessageBox::warning(this, tr("Unable to save results"), tr("Cannot write file %1: %2").arg(filename).arg(file.errorString()));
+   }
+   else
+   {
+      QTextStream out(&file);
+      out << "Name:    " << testerName << endl;
+      out << "Age:     " << testerAge << endl;
+      out << "Gender:  " << testerGender << endl;
+      out << "DomHand: " << testerDominantHand << endl;
+      out << endl << endl;
+
+      for (int i=0; i<results.size(); i++)
+      {
+         out << tr("Test #: %1").arg(i+1) << endl;
+         out << tr("Time:   %1").arg(results[i].time) << endl;
+         out << tr("Errors: %1").arg(results[i].errors);
+         if (i != results.size()-1)
+            out << endl << endl;
+         else
+            out << endl;
+      }
+   }
 }

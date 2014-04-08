@@ -84,7 +84,7 @@ QList<QString> StartDialog::getValues()
    if (leftDominantHandRadioButton->isChecked())
       values << leftDominantHandRadioButton->text();
    else if (rightDominantHandRadioButton->isChecked())
-      values << leftDominantHandRadioButton->text();
+      values << rightDominantHandRadioButton->text();
    else
       return QList<QString>();
 

@@ -31,6 +31,8 @@ public slots:
 signals:
    void emitHit(const int &rem);
    void emitError(const int &er);
+   void retResults(const int &t, const int &e);
+   void emitFinish();
 
 protected:
    void paintEvent(QPaintEvent *event);

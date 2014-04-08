@@ -14,9 +14,17 @@
 #include <QDockWidget>
 #include <QLabel>
 #include <QHBoxLayout>
+#include <QFile>
+#include <QTextStream>
 
 #include "testEnv.h"
 #include "startDialog.h"
+
+struct ResultHold {
+   ResultHold(const int &t, const int &e) : time(t), errors(e) {}
+   int time;
+   int errors;
+};
  
 class MainWindow : public QMainWindow {
  
@@ -29,17 +37,24 @@ public:
 public slots:
    void setRem(const int &x) {tarRem->setText(QString::number(x));}
    void setErr(const int &x) {errorNum->setText(QString::number(x));}
+   void saveResults(const int &t, const int &e);
+   void startTests();
    
 protected:
    void setUp();
    void getInfo();
-   void startTests();
    void createDock();
+   void loadCursors();
+   void displayInformation();
+   void thankUser();
+   void saveResults();
+   void saveResultsToFile();
 
 private:
    TestEnv *testArea;
    QString *participantName;
-   QList <QCursor> *cursorList;
+   QList <QCursor> cursorList;
+   int roundNum;
    StartDialog *startInfo;
 
    QString testerName;
@@ -49,9 +64,12 @@ private:
 
    QLabel *tarRem;
    QLabel *errorNum;
+
+   QList <ResultHold> results;
    
    static const QString cursorDir;
    static const QString resultsDir;
+   static const int numTargets;
 };
  
 #endif

@@ -70,8 +70,11 @@ void TestEnv::stop()
 {
    started = false;
    totalTime = timer->elapsed();
-
    update();
+   emit TestEnv::emitHit(0);
+   emit TestEnv::emitError(0);
+   emit TestEnv::retResults(totalTime, errors);
+   emit TestEnv::emitFinish();
 }
 
 void TestEnv::newTarget()
@@ -119,6 +122,7 @@ void TestEnv::newTarget()
       if (i==100) //Break the infinite loop
       {
          throw QString("Could not create a new target within field");
+         stop();
       }
    }
 }
