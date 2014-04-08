@@ -44,6 +44,8 @@ void MainWindow::getInfo()
 
 void MainWindow::loadCursors()
 {
+   cursorList << Qt::ArrowCursor;
+   
    QPixmap cursorCrossPic;
    cursorCrossPic.load((cursorDir+QString("cursorCross.bmp")), "BMP", Qt::MonoOnly);
    cursorCrossPic.setMask(QBitmap(cursorCrossPic));
@@ -91,6 +93,7 @@ void MainWindow::startTests()
 {
    if (cursorList.size() == 0) // Finished Testing, go to results
    {
+      setCursor(Qt::ArrowCursor);
       thankUser();
       saveResultsToFile();
       close();
