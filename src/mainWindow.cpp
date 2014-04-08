@@ -100,6 +100,7 @@ void MainWindow::startTests()
    }
    else
    {
+      rndNum->setText(QString::number(roundNum));
       QMessageBox::information(this,"Information", QString("Now beginning round %1.\n Click OK to begin.").arg(roundNum));
       setCursor(cursorList.takeFirst());
       try //Catch infinite loop
@@ -119,6 +120,8 @@ void MainWindow::createDock()
    dock->setAllowedAreas(Qt::TopDockWidgetArea);
    dock->setFeatures(QDockWidget::NoDockWidgetFeatures);
 
+   QLabel *roundNumTitle = new QLabel("Round #:");
+   rndNum = new QLabel(QString::number(0));
    QLabel *tarRemTitle = new QLabel("Targets Remaining:");
    tarRem = new QLabel(QString::number(0));
    QLabel *errorNumTitle = new QLabel("Errors:");
@@ -127,11 +130,14 @@ void MainWindow::createDock()
    QWidget *parentWidget = new QWidget();
    QHBoxLayout *layout = new QHBoxLayout();
 
+   layout->addWidget(roundNumTitle);
+   layout->addWidget(rndNum);
+   layout->addStretch();
    layout->addWidget(tarRemTitle);
    layout->addWidget(tarRem);
+   layout->addStretch();
    layout->addWidget(errorNumTitle);
    layout->addWidget(errorNum);
-   //layout->addSpace();
 
    parentWidget->setLayout(layout);
    dock->setWidget(parentWidget);

@@ -25,7 +25,7 @@ struct ResultHold {
    int time;
    int errors;
 };
- 
+
 class MainWindow : public QMainWindow {
  
   Q_OBJECT
@@ -64,6 +64,7 @@ private:
 
    QLabel *tarRem;
    QLabel *errorNum;
+   QLabel *rndNum;
 
    QList <ResultHold> results;
    
