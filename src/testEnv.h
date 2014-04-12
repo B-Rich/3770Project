@@ -11,6 +11,8 @@
 #include <QtGlobal>
 #include <QtCore/qmath.h>
 #include <QDebug>
+#include <QTimer>
+#include <QList>
 
 class TestEnv : public QWidget {
  

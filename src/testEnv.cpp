@@ -29,6 +29,8 @@ int TestEnv::retTime()
    return totalTime;
 }
 
+
+
 void TestEnv::paintEvent(QPaintEvent *event)
 {
    QPainter painter(this);

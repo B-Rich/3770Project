@@ -38,6 +38,7 @@ StartDialog::StartDialog(QWidget *parent) : QDialog(parent)
    
    okButton = new QPushButton("Ok");
    cancelButton = new QPushButton("Cancel");
+   okButton->setDefault(true);
 
    QHBoxLayout *nameLayout = new QHBoxLayout();
    nameLayout->addWidget(nameLabel);
@@ -63,8 +64,8 @@ StartDialog::StartDialog(QWidget *parent) : QDialog(parent)
    dominantEyeLayout->addWidget(rightDominantEyeRadioButton);
 
    QHBoxLayout *buttonsLayout = new QHBoxLayout();
-   buttonsLayout->addWidget(okButton);
    buttonsLayout->addWidget(cancelButton);
+   buttonsLayout->addWidget(okButton);
 
    QVBoxLayout *layout = new QVBoxLayout();
    layout->addLayout(nameLayout);
@@ -103,7 +104,7 @@ QList<QString> StartDialog::getValues()
 
    if (leftDominantEyeRadioButton->isChecked())
       values << leftDominantEyeRadioButton->text();
-   if (rightDominantEyeRadioButton->isChecked())
+   else if (rightDominantEyeRadioButton->isChecked())
       values << rightDominantEyeRadioButton->text();
    else
       return QList<QString>();	

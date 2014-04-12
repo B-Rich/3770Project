@@ -9,13 +9,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
    showFullScreen();
    startInfo = new StartDialog(this);
    
-   testArea = new TestEnv(numTargets,200,15,this);
+   testArea = new TestEnv(numTargets,200,20,this);
    QObject::connect(testArea, SIGNAL(emitHit(const int&)), this, SLOT(setRem(const int&)));
    QObject::connect(testArea, SIGNAL(emitError(const int&)), this, SLOT(setErr(const int&)));
    QObject::connect(testArea, SIGNAL(emitFinish()), this, SLOT(startTests()));
    QObject::connect(testArea, SIGNAL(retResults(const int&, const int&)), this, SLOT(saveResults(const int&, const int&)));
 
-   testArea2 = new TestEnv(numTargets,200,15,this);
+   testArea2 = new TestEnv(numTargets,200,20,this);
    QObject::connect(testArea2, SIGNAL(emitHit(const int&)), this, SLOT(setRem(const int&)));
    QObject::connect(testArea2, SIGNAL(emitError(const int&)), this, SLOT(setErr(const int&)));
    QObject::connect(testArea2, SIGNAL(emitFinish()), this, SLOT(startTests()));
