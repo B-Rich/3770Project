@@ -37,6 +37,7 @@ signals:
 protected:
    void paintEvent(QPaintEvent *event);
    void mousePressEvent(QMouseEvent *event);
+   void resizeEvent(QResizeEvent *event);
    
 private:
    bool started;
@@ -47,6 +48,7 @@ private:
    int moveDistance;
    int size;
    QRect *curTarget;
+   QRect *outline;
    static const double PI = 3.14159265359;
    int errors;
 

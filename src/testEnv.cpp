@@ -6,9 +6,10 @@ TestEnv::TestEnv(int num, int dist, int s, QWidget *parent) : QWidget(parent), t
    timer = new QTime();
    curTarget = new QRect(0,0,size,size);
    qsrand((uint)QTime::currentTime().msec());
-   setMinimumSize(500, 500);
+   setMinimumSize(250,250);
    this->setAutoFillBackground(true);
    this->setPalette(QPalette(Qt::white));
+   outline = new QRect(0,0,geometry().width()-1,geometry().height()-1);
 }
 
 void TestEnv::start()
@@ -32,6 +33,9 @@ void TestEnv::paintEvent(QPaintEvent *event)
 {
    QPainter painter(this);
    painter.setRenderHint(QPainter::Antialiasing, true);
+   
+   painter.drawRect(*outline);
+
    painter.setBrush(QBrush(Qt::gray));
    if (started)
       painter.drawRect(*curTarget);
@@ -80,7 +84,6 @@ void TestEnv::stop()
 void TestEnv::newTarget()
 {
    QPoint curPos = TestEnv::mapFromGlobal(QCursor::pos());
-   QRect curGeom = geometry();
 
    bool notDone = true;
    int i=0; //To catch infinite loops
@@ -111,12 +114,9 @@ void TestEnv::newTarget()
          newPos = QPoint((curPos.x() + moveX), (curPos.y() + moveY));
       }
       curTarget->moveTo(newPos);
-      if (curGeom.contains(*curTarget, true))
+      if (outline->contains(*curTarget, true))
       {
-         if (curTarget->bottomRight().y() < curGeom.height())
-         {
-            notDone = false;
-         }
+         notDone = false;
       }
       i++;
       if (i==100) //Break the infinite loop
@@ -125,4 +125,10 @@ void TestEnv::newTarget()
          stop();
       }
    }
+}
+
+void TestEnv::resizeEvent(QResizeEvent *event)
+{
+   outline->setSize(event->size()-QSize(1,1));
+   QWidget::resizeEvent(event);
 }

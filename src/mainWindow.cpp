@@ -2,17 +2,33 @@
  
 const QString MainWindow::cursorDir = "../cursors/";
 const QString MainWindow::resultsDir = "../results/";
-const int MainWindow::numTargets = 10;
+const int MainWindow::numTargets = 1;
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
    showFullScreen();
    startInfo = new StartDialog(this);
-   setCentralWidget(testArea = new TestEnv(numTargets,200,15,this));
+   
+   testArea = new TestEnv(numTargets,200,15,this);
    QObject::connect(testArea, SIGNAL(emitHit(const int&)), this, SLOT(setRem(const int&)));
    QObject::connect(testArea, SIGNAL(emitError(const int&)), this, SLOT(setErr(const int&)));
    QObject::connect(testArea, SIGNAL(emitFinish()), this, SLOT(startTests()));
    QObject::connect(testArea, SIGNAL(retResults(const int&, const int&)), this, SLOT(saveResults(const int&, const int&)));
+
+   testArea2 = new TestEnv(numTargets,200,15,this);
+   QObject::connect(testArea2, SIGNAL(emitHit(const int&)), this, SLOT(setRem(const int&)));
+   QObject::connect(testArea2, SIGNAL(emitError(const int&)), this, SLOT(setErr(const int&)));
+   QObject::connect(testArea2, SIGNAL(emitFinish()), this, SLOT(startTests()));
+   QObject::connect(testArea2, SIGNAL(retResults(const int&, const int&)), this, SLOT(saveResults(const int&, const int&)));
+
+   QHBoxLayout *layout = new QHBoxLayout();
+   layout->addWidget(testArea);
+   layout->addWidget(testArea2);
+
+   QWidget *temp = new QWidget();
+   temp->setLayout(layout);
+   setCentralWidget(temp);
+   
    createDock();
    getInfo();
    loadCursors();
@@ -70,6 +86,7 @@ void MainWindow::loadCursors()
    QCursor cursorRight(cursorRightPic, 31,15);
    cursorList << cursorRight;
    
+   cursorList+=cursorList;
    roundNum = 1;
 }
 
@@ -91,7 +108,7 @@ void MainWindow::displayInformation()
 
 void MainWindow::startTests()
 {
-   if (cursorList.size() == 0) // Finished Testing, go to results
+   if (cursorList.size()+1 == roundNum) // Finished Testing, go to results
    {
       setCursor(Qt::ArrowCursor);
       thankUser();
@@ -101,11 +118,24 @@ void MainWindow::startTests()
    else
    {
       rndNum->setText(QString::number(roundNum));
-      QMessageBox::information(this,"Information", QString("Now beginning round %1.\n Click OK to begin.").arg(roundNum));
-      setCursor(cursorList.takeFirst());
+      setCursor(cursorList[roundNum-1]);
+
+      QMessageBox msg(QMessageBox::Information,"Information", QString("Now beginning round %1.\n Click OK to begin.").arg(roundNum),QMessageBox::Ok, this);
+      
       try //Catch infinite loop
       {
-      testArea->start();
+      if (roundNum<=5)
+      {
+         msg.move(QPoint(testArea->geometry().x()+(testArea->geometry().width()/2), testArea->geometry().y()+(testArea->geometry().height()/2)));
+         msg.exec();
+         testArea->start();
+      }  
+      else
+      {
+         msg.move(QPoint(testArea2->geometry().x()+(testArea2->geometry().width()/2), testArea2->geometry().y()+(testArea2->geometry().height()/2)));
+         msg.exec();
+         testArea2->start();
+      }
       } catch (QString temp)
       {
          qDebug() << temp;

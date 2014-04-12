@@ -14,6 +14,7 @@
 #include <QDockWidget>
 #include <QLabel>
 #include <QHBoxLayout>
+#include <QVBoxLayout>
 #include <QFile>
 #include <QTextStream>
 
@@ -52,6 +53,7 @@ protected:
 
 private:
    TestEnv *testArea;
+   TestEnv *testArea2;
    QString *participantName;
    QList <QCursor> cursorList;
    int roundNum;
