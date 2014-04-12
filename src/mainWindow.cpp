@@ -200,7 +200,7 @@ void MainWindow::saveResultsToFile()
    while (duplicate)
    {
       if (file.exists())
-         file.setFileName(resultsDir+testerName+QString::number(1)+tr(".txt"));
+         file.setFileName(resultsDir+testerName+QString::number(j)+tr(".txt"));
       else
          duplicate = false;
       j++;
@@ -217,6 +217,7 @@ void MainWindow::saveResultsToFile()
       out << "Age:     " << testerAge << endl;
       out << "Gender:  " << testerGender << endl;
       out << "DomHand: " << testerDominantHand << endl;
+      out << "DomEye:  " << testerDominantEye << endl;
       out << endl << endl;
 
       for (int i=0; i<results.size(); i++)
