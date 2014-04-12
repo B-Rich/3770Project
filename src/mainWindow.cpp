@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
    showFullScreen();
    startInfo = new StartDialog(this);
-   setCentralWidget(testArea = new TestEnv(numTargets,200,50,this));
+   setCentralWidget(testArea = new TestEnv(numTargets,200,15,this));
    QObject::connect(testArea, SIGNAL(emitHit(const int&)), this, SLOT(setRem(const int&)));
    QObject::connect(testArea, SIGNAL(emitError(const int&)), this, SLOT(setErr(const int&)));
    QObject::connect(testArea, SIGNAL(emitFinish()), this, SLOT(startTests()));
