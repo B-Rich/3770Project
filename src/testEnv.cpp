@@ -32,7 +32,7 @@ void TestEnv::paintEvent(QPaintEvent *event)
 {
    QPainter painter(this);
    painter.setRenderHint(QPainter::Antialiasing, true);
-   painter.setBrush(palette().foreground().color());
+   painter.setBrush(QBrush(Qt::gray));
    if (started)
       painter.drawRect(*curTarget);
    QWidget::paintEvent(event);
