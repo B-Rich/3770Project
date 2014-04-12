@@ -63,6 +63,7 @@ private:
    QString testerAge;
    QString testerGender;
    QString testerDominantHand;
+   QString testerDominantEye;
 
    QLabel *tarRem;
    QLabel *errorNum;

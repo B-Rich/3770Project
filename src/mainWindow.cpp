@@ -2,7 +2,7 @@
  
 const QString MainWindow::cursorDir = "../cursors/";
 const QString MainWindow::resultsDir = "../results/";
-const int MainWindow::numTargets = 1;
+const int MainWindow::numTargets = 3;
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {

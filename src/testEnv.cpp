@@ -36,7 +36,7 @@ void TestEnv::paintEvent(QPaintEvent *event)
    
    painter.drawRect(*outline);
 
-   painter.setBrush(QBrush(Qt::gray));
+   painter.setBrush(QBrush(Qt::darkGray));
    if (started)
       painter.drawRect(*curTarget);
    QWidget::paintEvent(event);
