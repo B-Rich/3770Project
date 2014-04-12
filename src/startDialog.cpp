@@ -9,6 +9,7 @@ StartDialog::StartDialog(QWidget *parent) : QDialog(parent)
    ageLabel = new QLabel("Age:");
    genderLabel = new QLabel("Gender:");
    dominantHandLabel = new QLabel("Dominant Hand:");
+   dominantEyeLabel = new QLabel("Dominant Eye:");
 
    nameLineEdit = new QLineEdit();
 
@@ -16,6 +17,8 @@ StartDialog::StartDialog(QWidget *parent) : QDialog(parent)
    femaleGenderRadioButton = new QRadioButton("Female", this);
    leftDominantHandRadioButton = new QRadioButton("Left", this);
    rightDominantHandRadioButton = new QRadioButton("Right", this);
+   leftDominantEyeRadioButton = new QRadioButton("Left", this);
+   rightDominantEyeRadioButton = new QRadioButton("Right", this);
 
    genderButtonGroup = new QButtonGroup();
    genderButtonGroup->addButton(maleGenderRadioButton);
@@ -24,6 +27,10 @@ StartDialog::StartDialog(QWidget *parent) : QDialog(parent)
    dominantHandButtonGroup = new QButtonGroup();
    dominantHandButtonGroup->addButton(leftDominantHandRadioButton);
    dominantHandButtonGroup->addButton(rightDominantHandRadioButton);
+
+   dominantEyeButtonGroup = new QButtonGroup();
+   dominantEyeButtonGroup->addButton(leftDominantEyeRadioButton);
+   dominantEyeButtonGroup->addButton(rightDominantEyeRadioButton);
 
    ageSpinBox = new QSpinBox();
    ageSpinBox->setMinimum(MIN_AGE);
@@ -50,6 +57,11 @@ StartDialog::StartDialog(QWidget *parent) : QDialog(parent)
    dominantHandLayout->addWidget(leftDominantHandRadioButton);
    dominantHandLayout->addWidget(rightDominantHandRadioButton);
 
+   QHBoxLayout *dominantEyeLayout = new QHBoxLayout();
+   dominantEyeLayout->addWidget(dominantEyeLabel);
+   dominantEyeLayout->addWidget(leftDominantEyeRadioButton);
+   dominantEyeLayout->addWidget(rightDominantEyeRadioButton);
+
    QHBoxLayout *buttonsLayout = new QHBoxLayout();
    buttonsLayout->addWidget(okButton);
    buttonsLayout->addWidget(cancelButton);
@@ -59,6 +71,7 @@ StartDialog::StartDialog(QWidget *parent) : QDialog(parent)
    layout->addLayout(ageLayout);
    layout->addLayout(genderLayout);
    layout->addLayout(dominantHandLayout);
+   layout->addLayout(dominantEyeLayout);
    layout->addLayout(buttonsLayout);
 
    setLayout(layout);
@@ -87,6 +100,13 @@ QList<QString> StartDialog::getValues()
       values << rightDominantHandRadioButton->text();
    else
       return QList<QString>();
+
+   if (leftDominantEyeRadioButton->isChecked())
+      values << leftDominantEyeRadioButton->text();
+   if (rightDominantEyeRadioButton->isChecked())
+      values << rightDominantEyeRadioButton->text();
+   else
+      return QList<QString>();	
 
    return values;
 }

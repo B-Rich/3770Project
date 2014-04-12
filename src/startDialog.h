@@ -30,6 +30,7 @@ class StartDialog : public QDialog
    QLabel *ageLabel;
    QLabel *genderLabel;
    QLabel *dominantHandLabel;
+   QLabel *dominantEyeLabel;
 
    QLineEdit *nameLineEdit;
 
@@ -37,9 +38,12 @@ class StartDialog : public QDialog
    QRadioButton *femaleGenderRadioButton;
    QRadioButton *leftDominantHandRadioButton;
    QRadioButton *rightDominantHandRadioButton;
+   QRadioButton *leftDominantEyeRadioButton;
+   QRadioButton *rightDominantEyeRadioButton;
 
    QButtonGroup *genderButtonGroup;
    QButtonGroup *dominantHandButtonGroup;
+   QButtonGroup *dominantEyeButtonGroup;
 
    QSpinBox *ageSpinBox;
 

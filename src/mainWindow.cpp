@@ -56,6 +56,7 @@ void MainWindow::getInfo()
    testerAge = values[1];
    testerGender = values[2];
    testerDominantHand = values[3];
+   testerDominantEye = values[4];
 }
 
 void MainWindow::loadCursors()
