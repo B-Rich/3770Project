@@ -29,17 +29,19 @@ public slots:
    void changeSize(int s) {size=s;}
    void changeDistance(int d) {moveDistance=d;}
    void changeNumTargets(int n) {totalTargets=n;}
+   void positionUpdate();
 
 signals:
    void emitHit(const int &rem);
    void emitError(const int &er);
-   void retResults(const int &t, const int &e);
+   void retResults(const int &t, const int &e, const double &d);
    void emitFinish();
 
 protected:
    void paintEvent(QPaintEvent *event);
    void mousePressEvent(QMouseEvent *event);
    void resizeEvent(QResizeEvent *event);
+   void mouseMoveEvent(QMouseEvent *event);
    
 private:
    bool started;
@@ -54,9 +56,14 @@ private:
    static const double PI = 3.14159265359;
    int errors;
 
+   QTimer *distTimer;
+   double distance;
+   QList<QPoint> *positionList;
+   QList<QPoint> *mousePositionList;
+
    void stop();
    void newTarget();
-   
+   void calcDist();
 };
 
 #endif

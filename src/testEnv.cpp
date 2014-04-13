@@ -10,10 +10,22 @@ TestEnv::TestEnv(int num, int dist, int s, QWidget *parent) : QWidget(parent), t
    this->setAutoFillBackground(true);
    this->setPalette(QPalette(Qt::white));
    outline = new QRect(0,0,geometry().width()-1,geometry().height()-1);
+
+   distTimer = new QTimer();
+   distance = 0;
+   positionList = new QList<QPoint>;
+   mousePositionList = new QList<QPoint>;
+
+   QObject::connect(distTimer, SIGNAL(timeout()), this, SLOT(positionUpdate()));
+
+   setMouseTracking(true);
 }
 
 void TestEnv::start()
 {
+	distance = 0;
+	positionList->clear();
+	mousePositionList->clear();
    totalTime=0;
    errors=0;
    remainingTargets = totalTargets;
@@ -21,6 +33,7 @@ void TestEnv::start()
    started = true;
    emit emitHit(totalTargets);
    timer->start();
+   distTimer->start(50);
    update();
 }
 
@@ -29,7 +42,15 @@ int TestEnv::retTime()
    return totalTime;
 }
 
+void TestEnv::positionUpdate()
+{
+   positionList->push_back(*(mousePositionList->end()-1));
+}
 
+void TestEnv::mouseMoveEvent(QMouseEvent* event)
+{
+   mousePositionList->push_back(event->pos());
+}
 
 void TestEnv::paintEvent(QPaintEvent *event)
 {
@@ -79,8 +100,35 @@ void TestEnv::stop()
    update();
    emit TestEnv::emitHit(0);
    emit TestEnv::emitError(0);
-   emit TestEnv::retResults(totalTime, errors);
+	calcDist();
+   emit TestEnv::retResults(totalTime, errors, distance);
    emit TestEnv::emitFinish();
+}
+
+void TestEnv::calcDist()
+{
+   for(QList<QPoint>::iterator it = positionList->begin(); it != positionList->end(); it++)
+   {
+      if(it != positionList->end() - 1)
+      {
+         int p1X = it->x();
+			int p1Y = it->y();
+			it++;
+			int p2X = it->x();
+			int p2Y = it->y();
+
+			double xDiff = (p1X - p2X) * 1.0;
+			double yDiff = (p1Y - p2Y) * 1.0;
+
+			double xDiffSquare = pow(xDiff, 2.0);
+			double yDiffSquare = pow(yDiff, 2.0);
+
+			double sum = xDiffSquare + yDiffSquare;
+			distance += sqrt(sum);
+
+			it--;
+      }
+   }
 }
 
 void TestEnv::newTarget()

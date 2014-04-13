@@ -22,9 +22,10 @@
 #include "startDialog.h"
 
 struct ResultHold {
-   ResultHold(const int &t, const int &e) : time(t), errors(e) {}
+   ResultHold(const int &t, const int &e, const double &d) : time(t), errors(e), distanceTravelled(d) {}
    int time;
    int errors;
+   double distanceTravelled;
 };
 
 class MainWindow : public QMainWindow {
@@ -38,7 +39,7 @@ public:
 public slots:
    void setRem(const int &x) {tarRem->setText(QString::number(x));}
    void setErr(const int &x) {errorNum->setText(QString::number(x));}
-   void saveResults(const int &t, const int &e);
+   void saveResults(const int &t, const int &e, const double &d);
    void startTests();
    
 protected:

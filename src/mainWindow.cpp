@@ -13,13 +13,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
    QObject::connect(testArea, SIGNAL(emitHit(const int&)), this, SLOT(setRem(const int&)));
    QObject::connect(testArea, SIGNAL(emitError(const int&)), this, SLOT(setErr(const int&)));
    QObject::connect(testArea, SIGNAL(emitFinish()), this, SLOT(startTests()));
-   QObject::connect(testArea, SIGNAL(retResults(const int&, const int&)), this, SLOT(saveResults(const int&, const int&)));
+   QObject::connect(testArea, SIGNAL(retResults(const int&, const int&, const double&)), this, SLOT(saveResults(const int&, const int&, const double&)));
 
    testArea2 = new TestEnv(numTargets,200,20,this);
    QObject::connect(testArea2, SIGNAL(emitHit(const int&)), this, SLOT(setRem(const int&)));
    QObject::connect(testArea2, SIGNAL(emitError(const int&)), this, SLOT(setErr(const int&)));
    QObject::connect(testArea2, SIGNAL(emitFinish()), this, SLOT(startTests()));
-   QObject::connect(testArea2, SIGNAL(retResults(const int&, const int&)), this, SLOT(saveResults(const int&, const int&)));
+   QObject::connect(testArea2, SIGNAL(retResults(const int&, const int&, const double&)), this, SLOT(saveResults(const int&, const int&, const double&)));
 
    QHBoxLayout *layout = new QHBoxLayout();
    layout->addWidget(testArea);
@@ -179,15 +179,16 @@ void MainWindow::thankUser()
 {
    QString info = 
       "Thank you " + testerName + " for participating in our tests!\n\n" +
-      "Your performance data and general attributes will be recorded solely \n" +
-      "for the purpose of constructing statistics from the sample groups.\n" + 
+      "Your performance data and general attributes will be \n" +
+		"recorded solely for the purpose of constructing statistics \n" +
+		"from the sample groups.\n" + 
       "Your name will not be associated with any published data.";
    QMessageBox::information(this,"Thank You!", info);
 }
 
-void MainWindow::saveResults(const int &t, const int &e)
+void MainWindow::saveResults(const int &t, const int &e, const double &d)
 {
-   results.append(ResultHold(t,e));
+   results.append(ResultHold(t, e, d));
 }
 
 void MainWindow::saveResultsToFile()
@@ -222,9 +223,10 @@ void MainWindow::saveResultsToFile()
 
       for (int i=0; i<results.size(); i++)
       {
-         out << tr("Test #: %1").arg(i+1) << endl;
-         out << tr("Time:   %1").arg(results[i].time) << endl;
-         out << tr("Errors: %1").arg(results[i].errors);
+         out << tr("Test #:   %1").arg(i+1) << endl;
+         out << tr("Time:     %1").arg(results[i].time) << endl;
+         out << tr("Errors:   %1").arg(results[i].errors) << endl;
+	 		out << tr("Distance: %1").arg(results[i].distanceTravelled);
          if (i != results.size()-1)
             out << endl << endl;
          else
