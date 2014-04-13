@@ -44,12 +44,12 @@ int TestEnv::retTime()
 
 void TestEnv::positionUpdate()
 {
-   positionList->push_back(*(mousePositionList->end()-1));
+   positionList->push_back(*(mousePositionList->end() - 1));
 }
 
 void TestEnv::mouseMoveEvent(QMouseEvent* event)
 {
-   mousePositionList->push_back(event->pos());
+	mousePositionList->push_back(event->pos());
 }
 
 void TestEnv::paintEvent(QPaintEvent *event)
