@@ -1,0 +1,56 @@
+Name:    Jay Retzlaff
+Age:     22
+Gender:  Male
+DomHand: Right
+DomEye:  Right
+
+
+Test #:   1
+Time:     2964
+Errors:   0
+Distance: 897.669
+
+Test #:   2
+Time:     2357
+Errors:   0
+Distance: 705.349
+
+Test #:   3
+Time:     3254
+Errors:   2
+Distance: 771.672
+
+Test #:   4
+Time:     2716
+Errors:   0
+Distance: 743.456
+
+Test #:   5
+Time:     3205
+Errors:   0
+Distance: 881.249
+
+Test #:   6
+Time:     2446
+Errors:   0
+Distance: 862.064
+
+Test #:   7
+Time:     4179
+Errors:   2
+Distance: 1334.59
+
+Test #:   8
+Time:     2437
+Errors:   0
+Distance: 760.688
+
+Test #:   9
+Time:     2895
+Errors:   0
+Distance: 829.298
+
+Test #:   10
+Time:     2662
+Errors:   0
+Distance: 898.583

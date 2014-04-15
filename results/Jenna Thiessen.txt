@@ -1,0 +1,56 @@
+Name:    Jenna Thiessen
+Age:     21
+Gender:  Female
+DomHand: Right
+DomEye:  Right
+
+
+Test #:   1
+Time:     2931
+Errors:   0
+Distance: 975.768
+
+Test #:   2
+Time:     2844
+Errors:   0
+Distance: 793.403
+
+Test #:   3
+Time:     3778
+Errors:   1
+Distance: 926.822
+
+Test #:   4
+Time:     2972
+Errors:   0
+Distance: 708.03
+
+Test #:   5
+Time:     2838
+Errors:   0
+Distance: 786.576
+
+Test #:   6
+Time:     2168
+Errors:   0
+Distance: 629.827
+
+Test #:   7
+Time:     2513
+Errors:   0
+Distance: 863.39
+
+Test #:   8
+Time:     2757
+Errors:   0
+Distance: 771.985
+
+Test #:   9
+Time:     2616
+Errors:   0
+Distance: 793.15
+
+Test #:   10
+Time:     2332
+Errors:   0
+Distance: 670.001

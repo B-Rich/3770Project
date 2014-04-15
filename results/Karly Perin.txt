@@ -1,0 +1,56 @@
+Name:    Karly Perin
+Age:     21
+Gender:  Female
+DomHand: Right
+DomEye:  Left
+
+
+Test #:   1
+Time:     2824
+Errors:   0
+Distance: 845.276
+
+Test #:   2
+Time:     3267
+Errors:   0
+Distance: 1030.8
+
+Test #:   3
+Time:     3266
+Errors:   1
+Distance: 1035.58
+
+Test #:   4
+Time:     3088
+Errors:   0
+Distance: 964.601
+
+Test #:   5
+Time:     3019
+Errors:   0
+Distance: 903.249
+
+Test #:   6
+Time:     2837
+Errors:   0
+Distance: 1108.62
+
+Test #:   7
+Time:     2810
+Errors:   0
+Distance: 902.667
+
+Test #:   8
+Time:     2842
+Errors:   0
+Distance: 997.08
+
+Test #:   9
+Time:     2818
+Errors:   0
+Distance: 1317.56
+
+Test #:   10
+Time:     3095
+Errors:   0
+Distance: 1083.73
