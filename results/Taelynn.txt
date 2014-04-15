@@ -1,0 +1,56 @@
+Name:    Taelynn
+Age:     20
+Gender:  Female
+DomHand: Right
+DomEye:  Left
+
+
+Test #:   1
+Time:     3155
+Errors:   1
+Distance: 697.947
+
+Test #:   2
+Time:     3691
+Errors:   0
+Distance: 980.151
+
+Test #:   3
+Time:     2950
+Errors:   0
+Distance: 708.678
+
+Test #:   4
+Time:     2179
+Errors:   0
+Distance: 647.533
+
+Test #:   5
+Time:     3207
+Errors:   0
+Distance: 805.257
+
+Test #:   6
+Time:     2421
+Errors:   1
+Distance: 622.864
+
+Test #:   7
+Time:     3099
+Errors:   0
+Distance: 942.631
+
+Test #:   8
+Time:     3481
+Errors:   1
+Distance: 1053.16
+
+Test #:   9
+Time:     3690
+Errors:   0
+Distance: 806.508
+
+Test #:   10
+Time:     2858
+Errors:   1
+Distance: 809.904

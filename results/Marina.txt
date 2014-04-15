@@ -1,0 +1,56 @@
+Name:    Marina
+Age:     47
+Gender:  Female
+DomHand: Right
+DomEye:  Left
+
+
+Test #:   1
+Time:     4667
+Errors:   1
+Distance: 769.691
+
+Test #:   2
+Time:     3991
+Errors:   0
+Distance: 743.81
+
+Test #:   3
+Time:     3619
+Errors:   0
+Distance: 731.559
+
+Test #:   4
+Time:     4225
+Errors:   1
+Distance: 806.435
+
+Test #:   5
+Time:     5043
+Errors:   0
+Distance: 922.968
+
+Test #:   6
+Time:     2599
+Errors:   0
+Distance: 864.621
+
+Test #:   7
+Time:     4115
+Errors:   0
+Distance: 914.982
+
+Test #:   8
+Time:     3713
+Errors:   1
+Distance: 947.876
+
+Test #:   9
+Time:     3073
+Errors:   1
+Distance: 771.762
+
+Test #:   10
+Time:     4451
+Errors:   0
+Distance: 975.206
