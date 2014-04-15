@@ -1,0 +1,56 @@
+Name:    Chandler
+Age:     20
+Gender:  Female
+DomHand: Right
+DomEye:  Right
+
+
+Test #:   1
+Time:     4441
+Errors:   1
+Distance: 952.945
+
+Test #:   2
+Time:     6029
+Errors:   1
+Distance: 1920.42
+
+Test #:   3
+Time:     3399
+Errors:   0
+Distance: 888.807
+
+Test #:   4
+Time:     3898
+Errors:   0
+Distance: 837.209
+
+Test #:   5
+Time:     4581
+Errors:   1
+Distance: 855.441
+
+Test #:   6
+Time:     3865
+Errors:   2
+Distance: 938.239
+
+Test #:   7
+Time:     3756
+Errors:   0
+Distance: 771.204
+
+Test #:   8
+Time:     2777
+Errors:   0
+Distance: 822.701
+
+Test #:   9
+Time:     3150
+Errors:   0
+Distance: 776.755
+
+Test #:   10
+Time:     3120
+Errors:   1
+Distance: 863.694

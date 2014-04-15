@@ -1,0 +1,56 @@
+Name:    Annette
+Age:     21
+Gender:  Female
+DomHand: Right
+DomEye:  Right
+
+
+Test #:   1
+Time:     4093
+Errors:   1
+Distance: 979.498
+
+Test #:   2
+Time:     4017
+Errors:   1
+Distance: 897.045
+
+Test #:   3
+Time:     3635
+Errors:   0
+Distance: 831.951
+
+Test #:   4
+Time:     4172
+Errors:   0
+Distance: 789.279
+
+Test #:   5
+Time:     5765
+Errors:   0
+Distance: 952.858
+
+Test #:   6
+Time:     4031
+Errors:   1
+Distance: 1005.06
+
+Test #:   7
+Time:     3827
+Errors:   0
+Distance: 778.784
+
+Test #:   8
+Time:     3658
+Errors:   0
+Distance: 892.131
+
+Test #:   9
+Time:     3300
+Errors:   0
+Distance: 838.903
+
+Test #:   10
+Time:     4776
+Errors:   0
+Distance: 1129.89

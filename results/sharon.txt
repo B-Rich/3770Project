@@ -1,0 +1,56 @@
+Name:    sharon
+Age:     48
+Gender:  Female
+DomHand: Right
+DomEye:  Left
+
+
+Test #:   1
+Time:     3951
+Errors:   1
+Distance: 1088.08
+
+Test #:   2
+Time:     4747
+Errors:   2
+Distance: 802.087
+
+Test #:   3
+Time:     6794
+Errors:   4
+Distance: 792.33
+
+Test #:   4
+Time:     4787
+Errors:   0
+Distance: 1010.64
+
+Test #:   5
+Time:     4669
+Errors:   1
+Distance: 790.666
+
+Test #:   6
+Time:     5944
+Errors:   3
+Distance: 1035
+
+Test #:   7
+Time:     4071
+Errors:   1
+Distance: 894.912
+
+Test #:   8
+Time:     4211
+Errors:   0
+Distance: 921.823
+
+Test #:   9
+Time:     5153
+Errors:   3
+Distance: 867.034
+
+Test #:   10
+Time:     5415
+Errors:   2
+Distance: 955.375
