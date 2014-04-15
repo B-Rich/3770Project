@@ -1,0 +1,56 @@
+Name:    Brittney Johnston
+Age:     23
+Gender:  Female
+DomHand: Right
+DomEye:  Left
+
+
+Test #:   1
+Time:     3318
+Errors:   0
+Distance: 1107.66
+
+Test #:   2
+Time:     3249
+Errors:   1
+Distance: 722.537
+
+Test #:   3
+Time:     2690
+Errors:   0
+Distance: 696.209
+
+Test #:   4
+Time:     3438
+Errors:   1
+Distance: 682.897
+
+Test #:   5
+Time:     3292
+Errors:   1
+Distance: 679.574
+
+Test #:   6
+Time:     2810
+Errors:   0
+Distance: 776.231
+
+Test #:   7
+Time:     3371
+Errors:   1
+Distance: 685.636
+
+Test #:   8
+Time:     2662
+Errors:   0
+Distance: 658.509
+
+Test #:   9
+Time:     2805
+Errors:   0
+Distance: 697.387
+
+Test #:   10
+Time:     3687
+Errors:   1
+Distance: 793.691
